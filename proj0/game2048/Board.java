@@ -66,7 +66,7 @@ public class Board implements Iterable<Tile> {
      *  0 <= COL < size(). Returns null if there is no tile there. */
     public Tile tile(int col, int row) {
         return vtile(col, row, viewPerspective);
-    }
+    }//返回给定位置的tile
 
     /** Clear the board to empty and reset the score. */
     public void clear() {
@@ -85,20 +85,20 @@ public class Board implements Iterable<Tile> {
      *
      * Returns whether or not this move is a merge.
      * */
-    public boolean move(int col, int row, Tile tile) {
-        int pcol = viewPerspective.col(col, row, size()),
+    public boolean move(int col, int row, Tile tile) {//将tile移动到指定位置并返回是否合并过
+        int pcol = viewPerspective.col(col, row, size()),//从特定方向看时的col值转换为正方向(north)的col值
                 prow = viewPerspective.row(col, row, size());
-        if (tile.col() == pcol && tile.row() == prow) {
+        if (tile.col() == pcol && tile.row() == prow) {//如果tile已经在这上面了，说明处于动不了的状态，返回false
             return false;
         }
-        Tile tile1 = vtile(col, row, viewPerspective);
+        Tile tile1 = vtile(col, row, viewPerspective);//否则说明可以动，那么原来位置上的tile变成null
         values[tile.col()][tile.row()] = null;
 
         if (tile1 == null) {
-            values[pcol][prow] = tile.move(pcol, prow);
+            values[pcol][prow] = tile.move(pcol, prow);//要移动到的位置为空，直接覆盖
             return false;
         } else {
-            values[pcol][prow] = tile.merge(pcol, prow, tile1);
+            values[pcol][prow] = tile.merge(pcol, prow, tile1);//要移动的位置不为空，说明是合并，就合并并返回true
             return true;
         }
     }

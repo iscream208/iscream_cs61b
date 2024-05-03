@@ -34,7 +34,7 @@ public class Tile {
      *  own successor. */
     public Tile next() {
         return next == null ? this : next;
-    }
+    }//返回这一块的下一个状态next，如果next为null，返回自身，否则返回next
 
     /** Return a new tile at (ROW, COL) with value VALUE. */
     public static Tile create(int value, int col, int row) {
@@ -51,8 +51,8 @@ public class Tile {
     /** Return the result of merging OTHERTILE with me after moving to
      *  (COL, ROW). */
     public Tile merge(int col, int row, Tile otherTile) {
-        assert value == otherTile.value();
-        next = otherTile.next = new Tile(2 * value, col, row);
+        assert value == otherTile.value();//这个tile的value要等于要合并的tile的value
+        next = otherTile.next = new Tile(2 * value, col, row);//这个和othertile的next都变为一个新的合并后的tile
         return next;
     }
 
