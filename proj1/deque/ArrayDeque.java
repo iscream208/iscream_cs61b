@@ -1,7 +1,5 @@
 package deque;
 
-import net.sf.saxon.functions.ConstantFunction;
-
 public class ArrayDeque<T> {
     private T[] array;
     private int nextFirst;
