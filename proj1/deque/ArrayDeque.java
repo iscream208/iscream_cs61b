@@ -5,7 +5,7 @@ public class ArrayDeque<T> {
     private int nextFirst;
     private int nextLast;
     private int size;
-    public void ArrayDeque(){
+    public ArrayDeque(){
         array=(T[]) new Object[8];
         nextFirst=array.length-1;
         nextLast=0;
@@ -16,6 +16,7 @@ public class ArrayDeque<T> {
             resize();
         }
         array[nextFirst]=item;
+        //System.out.println("added"+array[nextFirst]);
         nextFirst=moveLoop(false,nextFirst);
         size++;
     }
@@ -62,7 +63,7 @@ public class ArrayDeque<T> {
             newArray[i]=array[i];
         }
         for(int i=0;i<array.length-1-nextFirst;i++){
-            newArray[newArray.length-i]=array[array.length-i];
+            newArray[newArray.length-1-i]=array[array.length-1-i];
         }
         nextFirst=newArray.length-1-(array.length-1-nextFirst);
         this.array=newArray;
@@ -113,5 +114,18 @@ public class ArrayDeque<T> {
         else {
             return array[i-head];
         }
+    }
+    public boolean equals(Object o){
+        if(o instanceof ArrayDeque){
+            int pos=moveLoop(true,nextFirst);
+            for (int i=0;i<size;i++){
+                if(this.get(pos)!=((ArrayDeque<?>) o).get(pos)){
+                    return false;
+                }
+                pos=moveLoop(true,pos);
+            }
+            return true;
+        }
+        return false;
     }
 }
