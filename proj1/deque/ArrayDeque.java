@@ -152,9 +152,9 @@ private void resize(){
     }
     public boolean equals(Object o){
         if(o instanceof ArrayDeque){
-            if (o==this){
-                return false;
-            }
+//            if (o==this){
+//                return false;
+//            }
             int pos=moveLoop(true,nextFirst);
             for (int i=0;i<size;i++){
                 if(this.get(pos)!=((ArrayDeque<?>) o).get(pos)){
