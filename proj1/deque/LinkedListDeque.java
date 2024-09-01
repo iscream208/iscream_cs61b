@@ -106,6 +106,9 @@ public class LinkedListDeque<T> implements Deque<T>,Iterable<T>{
     }
     public boolean equals(Object o){
         if(o instanceof Deque){
+            if(o==this){
+                return false;
+            }
             if (((Deque<?>) o).size()!=size){
                 return false;
             }//different size check
