@@ -60,17 +60,38 @@ public class ArrayDeque<T> implements Deque<T>,Iterable<T> {
         size--;
         return item;
     }
-    private void resize(){
-        T[] newArray=(T[]) new Object[array.length*2];
-        for(int i=0;i<nextLast;i++){
-            newArray[i]=array[i];
-        }
-        for(int i=0;i<array.length-1-nextFirst;i++){
-            newArray[newArray.length-1-i]=array[array.length-1-i];
-        }
-        nextFirst=newArray.length-1-(array.length-1-nextFirst);
-        this.array=newArray;
+//    private void resize(){
+//        T[] newArray=(T[]) new Object[array.length*2];
+//        if (nextLast!=0){
+//            for(int i=0;i<nextLast;i++){
+//                newArray[i]=array[i];
+//            }
+//            for(int i=0;i<array.length-1-nextFirst;i++){
+//                newArray[newArray.length-1-i]=array[array.length-1-i];
+//            }
+//            nextFirst=newArray.length-1-(array.length-1-nextFirst);
+//            this.array=newArray;
+//        }
+//        else {//边界情况
+//            for (int i=0;i<size;i++){
+//                newArray[i]=array[i];
+//            }
+//            this.array=newArray;
+//            nextFirst=newArray.length-1;
+//            nextLast=size;
+//        }
+//    }
+private void resize(){
+    T[] newArray=(T[]) new Object[array.length*2];
+    int p=moveLoop(true,nextFirst);
+    for (int i=0;i<size;i++){
+        newArray[i]=this.array[p];
+        p=moveLoop(true,p);
     }
+    this.array=newArray;
+    nextFirst=newArray.length-1;
+    nextLast=size;
+}
     private void resizeShort(){
         T[] newArray=(T[]) new Object[array.length/2];
         for(int i=0;i<nextLast;i++){
