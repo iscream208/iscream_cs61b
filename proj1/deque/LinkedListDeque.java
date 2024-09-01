@@ -2,8 +2,8 @@ package deque;
 
 import java.util.Iterator;
 
-public class LinkedListDeque<T> implements Deque<T>{
-    public class IntNode{
+public class LinkedListDeque<T> implements Deque<T>,Iterable<T>{
+    private class IntNode{
         public IntNode prev;
         public T item;
         public IntNode next;
@@ -88,7 +88,7 @@ public class LinkedListDeque<T> implements Deque<T>{
         }
         return getRecursiveHelper(index,sentinel.next);
     }
-    public T getRecursiveHelper(int index,IntNode p){
+    private T getRecursiveHelper(int index,IntNode p){
         if(index==0){
             return p.item;
         }
