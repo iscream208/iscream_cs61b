@@ -1,6 +1,9 @@
 package deque;
 
-public class ArrayDeque<T> {
+import java.lang.reflect.Array;
+import java.util.Iterator;
+
+public class ArrayDeque<T> implements Deque<T> {
     private T[] array;
     private int nextFirst;
     private int nextLast;
@@ -28,9 +31,9 @@ public class ArrayDeque<T> {
         nextLast=moveLoop(true,nextLast);
         size++;
     }
-    public boolean isEmpty(){
-        return size==0;
-    }
+//    public boolean isEmpty(){
+//        return size==0;
+//    }
     public T removeFirst(){
         if(isEmpty()){
             return null;
@@ -127,5 +130,24 @@ public class ArrayDeque<T> {
             return true;
         }
         return false;
+    }
+
+    private class ArrayDequeIterator implements Iterator<T>{
+        private int wizpos;
+        public ArrayDequeIterator(){
+            wizpos=0;
+        }
+        public boolean hasNext(){
+            return wizpos<size;
+        }
+        public T next(){
+            T returnItem=get(wizpos);
+            wizpos+=1;
+            return returnItem;
+        }
+    }
+
+    public Iterator<T> iterator(){
+        return new ArrayDequeIterator();
     }
 }

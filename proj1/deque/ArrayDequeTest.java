@@ -43,4 +43,24 @@ public class ArrayDequeTest {
         }
         assertEquals(a.size(),1000);
     }
+
+//    @Test
+//    public void iterTest(){
+//        ArrayDeque<Integer> a=new ArrayDeque<Integer>();
+//        for(int i=0;i<1000;i++){
+//            int operationNumber= StdRandom.uniform(0,2);
+//            if(operationNumber==0){
+//                a.addLast(1);
+//            }
+//            else if(operationNumber==1){
+//                a.addFirst(1);
+//            }
+//
+//        }
+//        int count=0;
+//        for(int item :a){
+//            count+=1;
+//        }
+//        assertEquals(count,1000);
+//    }
 }
