@@ -153,6 +153,9 @@ private void resize(){
     public boolean equals(Object o){
         if(o instanceof Deque){
 //            int pos=moveLoop(true,nextFirst);
+            if (((Deque<?>) o).size()!=size){
+                return false;
+            }
             for (int i=0;i<size;i++){
                 if(this.get(i).equals(((Deque<?>) o).get(i))==false){
                     return false;
