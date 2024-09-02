@@ -154,7 +154,7 @@ private void resize(){
         if(o instanceof Deque){
 //            int pos=moveLoop(true,nextFirst);
             for (int i=0;i<size;i++){
-                if(this.get(i).equals(((Deque<?>) o).get(i))!=false){
+                if(this.get(i).equals(((Deque<?>) o).get(i))==false){
                     return false;
                 }
 //                pos=moveLoop(true,pos);
