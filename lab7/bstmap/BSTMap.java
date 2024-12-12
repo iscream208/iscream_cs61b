@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
-public class BSTMap<K extends Comparable<K>,V extends Comparable<V>> implements Map61B<K,V>{
+public class BSTMap<K extends Comparable<K>,V> implements Map61B<K,V>{
     private Node root;
     private int size;
     private class Node{
@@ -35,14 +35,14 @@ public class BSTMap<K extends Comparable<K>,V extends Comparable<V>> implements 
 //        return get(targetKey)!=null;
         return getNode(targetKey)!=null;
     }
-    public Node getNode(K targetKey){
+    private Node getNode(K targetKey){
         return getNode(root,targetKey);
     }
     private Node getNode(Node n,K targetKey){
         if(n==null) return null;
         if (targetKey.compareTo(n.key)==0) return n;
-        else if (targetKey.compareTo(n.key)>0) return getNode(n,targetKey);
-        else return getNode(n,targetKey);
+        else if (targetKey.compareTo(n.key)>0) return getNode(n.right,targetKey);
+        else return getNode(n.left,targetKey);
     }
 
     public V get(K targetKey){
@@ -64,7 +64,7 @@ public class BSTMap<K extends Comparable<K>,V extends Comparable<V>> implements 
         Node putNode = new Node(key,value);
         put(putNode,root);
     }
-    public void put(Node putNode,Node node){
+    private void put(Node putNode,Node node){
         if (this.root==null) {
             this.root=new Node(putNode.key,putNode.value);
             size+=1;
@@ -102,7 +102,9 @@ public class BSTMap<K extends Comparable<K>,V extends Comparable<V>> implements 
 //        return new MyIterator();
         throw new UnsupportedOperationException("UnsupportedOperation");
     }
-
+    public void printInOrder(){
+        throw new UnsupportedOperationException("UnsupportedOperation");
+    }
 //    // 内部迭代器类
 //    private class MyIterator implements Iterator<K> {
 //        private int currentIndex = 0;
