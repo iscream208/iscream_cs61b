@@ -87,4 +87,11 @@ public class TestBSTMap {
         assertTrue(b.containsKey("hi"));
     }
 
+//    @Test
+//    public void containsKeyNullTestULL() {
+//        ULLMap<String, Integer> b = new ULLMap<>();
+//        b.put("hi", null);
+//        assertTrue(b.containsKey("hi"));
+//    }
+//
 }
